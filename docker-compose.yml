@@ -1,0 +1,42 @@
+version: "3.5"
+services:
+  db:
+    image: postgres:alpine
+    container_name: elixir-db
+    environment:
+      POSTGRES_DB: skeleton_elixir
+      POSTGRES_USER: skeleton_elixir
+      POSTGRES_PASSWORD: skeleton_elixir
+    ports:
+      - 5432:5432
+    tty: true
+    restart: always
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - db
+    depends_on:
+      - db
+  api:
+    container_name: elixir-api
+    build: docker/.
+    image: ruyjfs:elixir
+    working_dir: /var/www
+    volumes:
+      - .:/var/www/
+    environment:
+      - MIX_ENV=dev
+    # entrypoint: [ "/bin/sh" , "/var/www/docker/entrypoint.sh" ]
+    command: mix phx.server
+    # command: iex -S mix phx.server
+    ports:
+      - 4000:4000
+    tty: true
+    restart: always
+    links:
+      - db
+    depends_on:
+      - db
