@@ -1,26 +1,37 @@
-# SkeletonElixir
+# Heimdallr (Your best Sigle Sign On with Elixir)
 
-    docker run -it --rm --name elixir -p 4000:4000 -v "$PWD":"/var/www" -w "/var/www" elixir:slim /bin/bash
+### Powered By:
 
-    mix local.hex --force
+- Elixir (Language)
+- Pheonix (Framework)
+- Absynt (GraphQL)
+- Ecto (ORM)
+- Mix (Package Manager)
+- PostgreSQL (SGBD)
+- JWT / SSO
+- Socket.IO (Assync)
 
-    mix archive.install hex phx --force
+docker run -it --rm --name elixir -p 4000:4000 -v "\$PWD":"/var/www" -w "/var/www" elixir:slim /bin/bash
 
-    mix archive.install hex phx_new --force
+mix local.hex --force
 
-    mix phx.new skeleton_elixir --no-html --no-webpack
+mix archive.install hex phx --force
 
-    cd skeleton_elixir
+mix archive.install hex phx_new --force
 
-    mix phx.server
+mix phx.new heimdallr --no-html --no-webpack
 
-    mix archive.install hex absinthe
+cd heimdallr
 
-    mix archive.install hex absinthe_plug absinthe_ecto --force
+mix phx.server
 
-    mix ecto.create
+mix archive.install hex absinthe
 
-    mix deps.get
+mix archive.install hex absinthe_plug absinthe_ecto --force
+
+mix ecto.create
+
+mix deps.get
 
 Create DB
 mix ecto.create

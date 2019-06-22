@@ -3,7 +3,7 @@ defmodule SkeletonElixir.MixProject do
 
   def project do
     [
-      app: :skeleton_elixir,
+      app: :heimdallr,
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -41,9 +41,12 @@ defmodule SkeletonElixir.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:absinthe_plug, "~> 1.4"}, # GraphQL Interface
-      {:poison, "~> 2.1.0"}, # GraphQL Json
-      {:absinthe, "~> 1.4"}, # GraphQL
+      # GraphQL Interface
+      {:absinthe_plug, "~> 1.4"},
+      # GraphQL Json
+      {:poison, "~> 2.1.0"},
+      # GraphQL
+      {:absinthe, "~> 1.4"}
       # {:comeonin, "~> 4.0"}, # Auth
       # {:bcrypt_elixir, "~> 1.0"}, # Auth
       # {:guardian, "~> 1.0"} # Auth

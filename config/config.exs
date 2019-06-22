@@ -7,11 +7,11 @@
 # General application configuration
 use Mix.Config
 
-config :skeleton_elixir,
+config :heimdallr,
   ecto_repos: [SkeletonElixir.Repo]
 
 # Configures the endpoint
-config :skeleton_elixir, SkeletonElixirWeb.Endpoint,
+config :heimdallr, SkeletonElixirWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Zg6poILJ3737p6ab3b0xZ1NqXiljOlpyJD2v7sNMe/Ga9wB7vOzTAgAZXQEtMuZD",
   render_errors: [view: SkeletonElixirWeb.ErrorView, accepts: ~w(json)],

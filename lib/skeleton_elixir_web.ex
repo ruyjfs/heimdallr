@@ -30,7 +30,7 @@ defmodule SkeletonElixirWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/skeleton_elixir_web/templates",
+        root: "lib/heimdallr_web/templates",
         namespace: SkeletonElixirWeb
 
       # Import convenience functions from controllers

@@ -4,9 +4,9 @@ services:
     image: postgres:alpine
     container_name: elixir-db
     environment:
-      POSTGRES_DB: skeleton_elixir
-      POSTGRES_USER: skeleton_elixir
-      POSTGRES_PASSWORD: skeleton_elixir
+      POSTGRES_DB: heimdallr
+      POSTGRES_USER: heimdallr
+      POSTGRES_PASSWORD: heimdallr
     ports:
       - 5432:5432
     tty: true

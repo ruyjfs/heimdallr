@@ -1,11 +1,11 @@
 defmodule SkeletonElixir.Repo do
   use Ecto.Repo,
-    otp_app: :skeleton_elixir,
+    otp_app: :heimdallr,
     adapter: Ecto.Adapters.Postgres
 end
 
 # defmodule SkeletonElixir.Repo do
-#   use Ecto.Repo, otp_app: :skeleton_elixir
+#   use Ecto.Repo, otp_app: :heimdallr
 
 #   @doc """
 #   Dynamically loads the repository url from the

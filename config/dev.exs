@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :skeleton_elixir, SkeletonElixir.Repo,
-  username: "skeleton_elixir",
-  password: "skeleton_elixir",
-  database: "skeleton_elixir",
+config :heimdallr, SkeletonElixir.Repo,
+  username: "heimdallr",
+  password: "heimdallr",
+  database: "heimdallr",
   hostname: "db",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,7 +15,7 @@ config :skeleton_elixir, SkeletonElixir.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :skeleton_elixir, SkeletonElixirWeb.Endpoint,
+config :heimdallr, SkeletonElixirWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
