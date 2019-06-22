@@ -8,14 +8,14 @@
 use Mix.Config
 
 config :heimdallr,
-  ecto_repos: [SkeletonElixir.Repo]
+  ecto_repos: [Heimdallr.Repo]
 
 # Configures the endpoint
-config :heimdallr, SkeletonElixirWeb.Endpoint,
+config :heimdallr, HeimdallrWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Zg6poILJ3737p6ab3b0xZ1NqXiljOlpyJD2v7sNMe/Ga9wB7vOzTAgAZXQEtMuZD",
-  render_errors: [view: SkeletonElixirWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: SkeletonElixir.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: HeimdallrWeb.ErrorView, accepts: ~w(json)],
+  pubsub: [name: Heimdallr.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,

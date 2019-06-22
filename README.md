@@ -11,6 +11,24 @@
 - JWT / SSO
 - Socket.IO (Assync)
 
+### Run app
+
+```
+docker-compose up
+```
+
+### Enter to container
+
+```
+docker exec -it heimdallr-api /bin/sh
+```
+
+### Run migrate
+
+```
+docker exec -it heimdallr-api mix ecto.migrate
+```
+
 docker run -it --rm --name elixir -p 4000:4000 -v "\$PWD":"/var/www" -w "/var/www" elixir:slim /bin/bash
 
 mix local.hex --force

@@ -1,4 +1,4 @@
-defmodule SkeletonElixirWeb.ChannelCase do
+defmodule HeimdallrWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule SkeletonElixirWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint SkeletonElixirWeb.Endpoint
+      @endpoint HeimdallrWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SkeletonElixir.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Heimdallr.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(SkeletonElixir.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Heimdallr.Repo, {:shared, self()})
     end
 
     :ok

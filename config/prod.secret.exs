@@ -12,7 +12,7 @@ database_url =
     For example: ecto://USER:PASS@HOST/DATABASE
     """
 
-config :heimdallr, SkeletonElixir.Repo,
+config :heimdallr, Heimdallr.Repo,
   # ssl: true,
   url: database_url,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
@@ -24,6 +24,6 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
-config :heimdallr, SkeletonElixirWeb.Endpoint,
+config :heimdallr, HeimdallrWeb.Endpoint,
   http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
   secret_key_base: secret_key_base

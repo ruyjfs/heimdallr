@@ -1,4 +1,4 @@
-defmodule SkeletonElixir.Repo.Migrations.CreateUsers do
+defmodule Heimdallr.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do
@@ -7,7 +7,7 @@ defmodule SkeletonElixir.Repo.Migrations.CreateUsers do
       add(:first_name, :string)
       add(:last_name, :string)
       add(:date, :date)
-      add(:gender, :string)
+      add(:gender, :integer)
       add(:password, :string)
       add(:created_at, :date)
       add(:updated_at, :date)

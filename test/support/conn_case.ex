@@ -1,4 +1,4 @@
-defmodule SkeletonElixirWeb.ConnCase do
+defmodule HeimdallrWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,18 +19,18 @@ defmodule SkeletonElixirWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      alias SkeletonElixirWeb.Router.Helpers, as: Routes
+      alias HeimdallrWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint SkeletonElixirWeb.Endpoint
+      @endpoint HeimdallrWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SkeletonElixir.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Heimdallr.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(SkeletonElixir.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Heimdallr.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

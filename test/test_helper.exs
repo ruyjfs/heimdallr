@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(SkeletonElixir.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Heimdallr.Repo, :manual)

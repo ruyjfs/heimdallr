@@ -1,4 +1,4 @@
-defmodule SkeletonElixir.DataCase do
+defmodule Heimdallr.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule SkeletonElixir.DataCase do
 
   using do
     quote do
-      alias SkeletonElixir.Repo
+      alias Heimdallr.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import SkeletonElixir.DataCase
+      import Heimdallr.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(SkeletonElixir.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Heimdallr.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(SkeletonElixir.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Heimdallr.Repo, {:shared, self()})
     end
 
     :ok
