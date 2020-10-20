@@ -1,4 +1,8 @@
 defmodule HeimdallrWeb.Resolvers.Accounts do
+  def list_users(_parent, _args, _resolution) do
+    {:ok, Heimdallr.Accounts.list_users()}
+  end
+
   def find_user(_parent, %{id: id}, _resolution) do
     case Heimdallr.Accounts.find_user(id) do
       nil ->
@@ -14,6 +18,6 @@ defmodule HeimdallrWeb.Resolvers.Accounts do
   end
 
   def create_user(_parent, _args, _resolution) do
-    {:error, "Access denied"}
+    {:error, "Access danied"}
   end
 end

@@ -9,9 +9,9 @@ defmodule Heimdallr.Repo.Migrations.CreateUsers do
       add(:date, :date)
       add(:gender, :integer)
       add(:password, :string)
-      add(:created_at, :date)
-      add(:updated_at, :date)
-      add(:deleted_at, :date)
+      add(:inserted_at, :datetime)
+      add(:updated_at, :datetime)
+      add(:deleted_at, :datetime)
     end
   end
 end

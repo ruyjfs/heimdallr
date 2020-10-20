@@ -1,13 +1,12 @@
 defmodule HeimdallrWeb.Router do
-  use HeimdallrWeb, :router
+  # use HeimdallrWeb, :router
+  use Phoenix.Router
 
-  pipeline :api do
-    plug(:accepts, ["json"])
-  end
+  # resource "/pages", HeimdallrWeb.PagesController
 
-  scope "/api", HeimdallrWeb do
-    pipe_through(:api)
-  end
+  # scope "/api", HeimdallrWeb do
+  #   pipe_through(:api)
+  # end
 
   pipeline :api do
     plug(:accepts, ["json"])
@@ -15,11 +14,11 @@ defmodule HeimdallrWeb.Router do
   end
 
   scope "/api" do
-    pipe_through(:api)
+    pipe_through :api
 
     forward("/graphiql", Absinthe.Plug.GraphiQL, schema: HeimdallrWeb.Schema)
-    # interface: :simple
+    #   # interface: :simple
 
-    forward("/", Absinthe.Plug, schema: HeimdallrWeb.Schema)
+    forward "/", Absinthe.Plug, schema: HeimdallrWeb.Schema
   end
 end

@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :heimdallr,
-  ecto_repos: [Heimdallr.Repo]
+  ecto_repos: [Heimdallr.Repo],
+  migration_timestamps: [type: :utc_datetime]
 
 # Configures the endpoint
 config :heimdallr, HeimdallrWeb.Endpoint,

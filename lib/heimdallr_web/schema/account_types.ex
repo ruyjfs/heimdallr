@@ -7,6 +7,9 @@ defmodule HeimdallrWeb.Schema.AccountTypes do
   object :user do
     field(:id, :id)
     field(:name, :string)
+    field(:first_name, :string)
+    field(:last_name, :string)
+    field(:date, :string)
     # field(:contacts, list_of(:contact))
 
     # field :posts, list_of(:post) do

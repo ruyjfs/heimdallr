@@ -47,6 +47,8 @@ mix archive.install hex absinthe
 
 mix archive.install hex absinthe_plug absinthe_ecto --force
 
+mix archive.install hex comeonin
+
 mix ecto.create
 
 mix deps.get
@@ -57,6 +59,8 @@ mix ecto.create
 mix ecto.gen.migration create_people
 
 mix ecto.migrate
+
+MIX_ENV=dev mix phx.server
 
 ## Run with docker
 

@@ -4,7 +4,7 @@ defmodule HeimdallrWeb.Context do
   import Plug.Conn
   import Ecto.Query, only: [first: 1]
 
-  alias HeimdallrWeb.{Repo, Accounts}
+  alias Heimdallr.{Repo, Accounts}
 
   def init(opts), do: opts
 
@@ -31,12 +31,22 @@ defmodule HeimdallrWeb.Context do
   # NOTE: This is a stub, just returning the first user and stubbing in the user
   # as an administrator.
   defp authorize(_token) do
-    Accounts.User
-    |> first
-    |> Repo.one()
-    |> case do
-      nil -> {:error, "No users available, have you run the seeds?"}
-      user -> {:ok, Map.put(user, :admin, true)}
-    end
+    IO.inspect(
+      Accounts.User
+      |> first
+      |> Repo.one()
+      |> case do
+        nil -> {:error, "No users available, have you run the seeds?"}
+        user -> {:ok, Map.put(user, :admin, true)}
+      end
+    )
+
+    # Accounts.User
+    # |> first
+    # |> Repo.one()
+    # |> case do
+    #   nil -> {:error, "No users available, have you run the seeds?"}
+    #   user -> {:ok, Map.put(user, :admin, true)}
+    # end
   end
 end

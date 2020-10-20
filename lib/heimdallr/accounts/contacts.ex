@@ -1,28 +1,28 @@
-defmodule Heimdallr.Accounts.Contact do
-  use Ecto.Schema
-  import Ecto.Changeset
+# defmodule Heimdallr.Accounts.Contact do
+#   use Ecto.Schema
+#   import Ecto.Changeset
 
-  alias Heimdallr.Accounts
+#   alias Heimdallr.Accounts
 
-  schema "contacts" do
-    field(:type, :string)
-    field(:value, :string)
+#   schema "contacts" do
+#     field(:type, :string)
+#     field(:value, :string)
 
-    belongs_to(:user, Accounts.User)
+#     belongs_to(:user, Accounts.User)
 
-    timestamps()
-  end
+#     timestamps()
+#   end
 
-  @doc false
-  def changeset(attrs) do
-    %__MODULE__{}
-    |> changeset(attrs)
-  end
+#   @doc false
+#   def changeset(attrs) do
+#     %__MODULE__{}
+#     |> changeset(attrs)
+#   end
 
-  @doc false
-  def changeset(%Accounts.Contact{} = contact, attrs) do
-    contact
-    |> cast(attrs, [:type, :value])
-    |> validate_required([:type, :value])
-  end
-end
+#   @doc false
+#   def changeset(%Accounts.Contact{} = contact, attrs) do
+#     contact
+#     |> cast(attrs, [:type, :value])
+#     |> validate_required([:type, :value])
+#   end
+# end

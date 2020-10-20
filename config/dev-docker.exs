@@ -5,7 +5,7 @@ config :heimdallr, Heimdallr.Repo,
   username: "heimdallr-usr",
   password: "heimdallr-psw",
   database: "heimdallr-db",
-  hostname: "localhost",
+  hostname: "service-heimdallr-db",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

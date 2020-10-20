@@ -6,15 +6,17 @@ defmodule Heimdallr.Accounts.User do
 
   schema "users" do
     field(:name, :string)
-    field(:password_hash, :string)
+    field(:password, :string)
+    # field(:password_hash, :string)
 
     # Virtual fields:
-    field(:password, :string, virtual: true)
+    # field(:password, :string, virtual: true)
     field(:password_confirmation, :string, virtual: true)
 
     # has_many(:posts, Content.Post, foreign_key: :author_id)
     # has_many(:contacts, Accounts.Contact)
 
+    # timestamps()
     timestamps()
   end
 
@@ -28,10 +30,10 @@ defmodule Heimdallr.Accounts.User do
   def changeset(%__MODULE__{} = user, attrs) do
     attrs =
       attrs
-      |> Map.put(:password_hash, Comeonin.Argon2.hashpwsalt(attrs.password))
+      |> Map.put(:password, Argon2.hash_pwd_salt(attrs.password))
 
     user
-    |> cast(attrs, [:name, :password_hash])
-    |> validate_required([:name, :password_hash])
+    |> cast(attrs, [:name, :password])
+    |> validate_required([:name, :password])
   end
 end

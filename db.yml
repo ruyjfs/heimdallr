@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  service-heimdallr-db:
+    image: postgres:alpine
+    container_name: heimdallr-db
+    environment:
+      POSTGRES_DB: heimdallr-db
+      POSTGRES_USER: heimdallr-usr
+      POSTGRES_PASSWORD: heimdallr-psw
+    ports:
+      - 5432:5432
+    tty: true
+    restart: always
+  service-heimdallr-adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - service-heimdallr-db
+    depends_on:
+      - service-heimdallr-db

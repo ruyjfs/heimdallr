@@ -1,42 +1,46 @@
 version: "3.5"
 services:
-  api:
+  service-heimdallr-db:
+    image: postgres:alpine
+    container_name: heimdallr-db
+    environment:
+      POSTGRES_DB: heimdallr-db
+      POSTGRES_USER: heimdallr-usr
+      POSTGRES_PASSWORD: heimdallr-psw
+    ports:
+      - 5432:5432
+    tty: true
+    restart: always
+  service-heimdallr-api:
     container_name: heimdallr-api
     build: docker/.
-    image: ryubr:elixir
+    image: ruyjfs:elixir
     working_dir: /var/www
     volumes:
       - .:/var/www/
     environment:
-      - MIX_ENV=dev
+      - MIX_ENV=dev-docker
     entrypoint: [ "/bin/sh" , "/var/www/docker/entrypoint/local.sh" ]
-    command: mix phx.server
+    # command: sh -c 'mix local.hex && mix phx.server'  
+    # command: sh -c 'mix phx.server'  
+    # command: sh -c 'rm mix.lock && rm -rf _build/ && mix deps.get --all && mix phx.server'  
+    command: mix phx.server  
     # command: iex -S mix phx.server
     ports:
       - 4000:4000
     tty: true
     restart: always
     links:
-      - db
+      - service-heimdallr-db
     depends_on:
-      - db
-  db:
-    image: postgres:alpine
-    container_name: heimdallr-db
-    environment:
-      POSTGRES_DB: heimdallr
-      POSTGRES_USER: heimdallr
-      POSTGRES_PASSWORD: heimdallr
-    ports:
-      - 5432:5432
-    tty: true
-    restart: always
-  adminer:
+      - service-heimdallr-db
+  service-heimdallr-adminer:
+    container_name: heimdallr-adminer
     image: adminer
     restart: always
     ports:
       - 8080:8080
     links:
-      - db
+      - service-heimdallr-db
     depends_on:
-      - db
+      - service-heimdallr-db
