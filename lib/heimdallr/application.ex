@@ -6,14 +6,17 @@ defmodule Heimdallr.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
     children = [
       # Start the Ecto repository
       Heimdallr.Repo,
-      # Start the endpoint when the application starts
+      # Start the Telemetry supervisor
+      HeimdallrWeb.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Heimdallr.PubSub},
+      # Start the Endpoint (http/https)
       HeimdallrWeb.Endpoint
-      # Starts a worker by calling: Heimdallr.Worker.start_link(arg)
-      # {Heimdallr.Worker, arg},
+      # Start a worker by calling: Heimdallr.Worker.start_link(arg)
+      # {Heimdallr.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

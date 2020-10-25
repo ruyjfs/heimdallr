@@ -1,4 +1,4 @@
-# Heimdallr (Your best Sigle Sign On with Elixir)
+# Heimdallr (Your best Sigle Sign On with Elixir and JWT)
 
 ### Powered By:
 
@@ -31,6 +31,8 @@ docker exec -it heimdallr-api mix ecto.migrate
 
 docker run -it --rm --name elixir -p 4000:4000 -v "\$PWD":"/var/www" -w "/var/www" elixir:slim /bin/bash
 
+mix phx.gen.context UserManager User users username:string password:string
+
 mix local.hex --force
 
 mix archive.install hex phx --force
@@ -53,6 +55,9 @@ mix ecto.create
 
 mix deps.get
 
+mix phx.gen.schema User users name:string email:string \
+bio:string number_of_pets:integer
+
 Create DB
 mix ecto.create
 
@@ -72,6 +77,7 @@ To start your Phoenix server:
 
 - Install dependencies with `mix deps.get`
 - Create and migrate your database with `mix ecto.setup`
+- Install Node.js dependencies with `npm install` inside the `assets` directory
 - Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
@@ -80,8 +86,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Learn more
 
-- Official website: http://www.phoenixframework.org/
+- Official website: https://www.phoenixframework.org/
 - Guides: https://hexdocs.pm/phoenix/overview.html
 - Docs: https://hexdocs.pm/phoenix
-- Mailing list: http://groups.google.com/group/phoenix-talk
+- Forum: https://elixirforum.com/c/phoenix-forum
 - Source: https://github.com/phoenixframework/phoenix

@@ -4,7 +4,8 @@ defmodule HeimdallrWeb.Context do
   import Plug.Conn
   import Ecto.Query, only: [first: 1]
 
-  alias Heimdallr.{Repo, Accounts}
+  alias Heimdallr.Repo
+  alias Heimdallr.Schema.User
 
   def init(opts), do: opts
 
@@ -20,19 +21,30 @@ defmodule HeimdallrWeb.Context do
   authorization header is sent.
   """
   def build_context(conn) do
+    # IO.inspect(conn)
+    # IO.inspect("<<<<<<>>>>>>>>>>")
+    # IO.inspect(get_req_header(conn, "authorization"))
+
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
          {:ok, current_user} <- authorize(token) do
       %{current_user: current_user}
     else
-      _ -> %{}
+      _ -> verify(conn)
     end
+  end
+
+  defp verify(conn) do
+    IO.inspect(get_req_header(conn, "params"))
+    IO.inspect("Z-->>>>>>>>>>>>>>>>>>>>")
+    # %{:current_user => %{:name => "Ruy", :admin => true}}
+    %{}
   end
 
   # NOTE: This is a stub, just returning the first user and stubbing in the user
   # as an administrator.
   defp authorize(_token) do
     IO.inspect(
-      Accounts.User
+      User
       |> first
       |> Repo.one()
       |> case do

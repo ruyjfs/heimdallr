@@ -20,7 +20,15 @@ config :heimdallr, HeimdallrWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: []
+  watchers: [
+    node: [
+      "node_modules/webpack/bin/webpack.js",
+      "--mode",
+      "development",
+      "--watch-stdin",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
 
 # ## SSL Support
 #
@@ -46,6 +54,17 @@ config :heimdallr, HeimdallrWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
+# Watch static and templates for browser reloading.
+config :heimdallr, HeimdallrWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/heimdallr_web/(live|views)/.*(ex)$",
+      ~r"lib/heimdallr_web/templates/.*(eex)$"
+    ]
+  ]
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
@@ -55,3 +74,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :guardian, Guardian,
+  issuer: "heimdallr",
+  secret_key: "tHKcly4mUCWEin/7PMDfGIwZsGwTwOAB+y1Z2uYU8OLrf3LuDbI9DKAz/dGAz5iP",
+  serializer: Heimdallr.Guardian
