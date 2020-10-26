@@ -1,5 +1,23 @@
 version: "3.5"
 services:
+  # service-heimdallr-web-build:
+  #   image: node:10
+  #   container_name: heimdallr-web-build
+  #   user: "node"
+  #   working_dir: /home/node/app/assets
+  #   #    healthcheck:
+  #   #      test: ["CMD", "curl", "-sS", "http://localhost:8080"]
+  #   #      #      test: ["CMD-SHELL", "node /home/node/app/healthcheck.js"]
+  #   #      interval: 20s
+  #   #      timeout: 5s
+  #   #      retries: 3
+  #   volumes:
+  #     - .:/home/node/app
+  #   command: sh -c 'npm install && node node_modules/webpack/bin/webpack.js --mode development'
+  #   ports:
+  #     - "8081:8080"
+  #   environment:
+  #     - NODE_ENV=development
   service-heimdallr-db:
     image: postgres:alpine
     container_name: heimdallr-db
@@ -24,8 +42,7 @@ services:
     # command: sh -c 'mix local.hex && mix phx.server'  
     # command: sh -c 'mix phx.server'  
     # command: sh -c 'rm mix.lock && rm -rf _build/ && mix deps.get --all && mix phx.server'  
-    command: mix phx.server  
-    # command: iex -S mix phx.server
+    command: mix phx.server
     ports:
       - 4000:4000
     tty: true

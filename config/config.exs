@@ -30,13 +30,9 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
 
-# config :guardian, Guardian,
-#   issuer: "heimdallr",
-#   verify_module: Guardian.JWT,
-#   secret_key: "tHKcly4mUCWEin/7PMDfGIwZsGwTwOAB+y1Z2uYU8OLrf3LuDbI9DKAz/dGAz5iP",
-#   # secret_key: Mix.env(),
-#   serializer: Heimdallr.Guardian
 config :heimdallr, Heimdallr.Guardian,
-  issuer: "auth_me",
-  # put the result of the mix command above here
+  issuer: "heimdallr",
+  #   verify_module: Guardian.JWT,
+  #   serializer: Heimdallr.Guardian
+  #   # secret_key: Mix.env(),
   secret_key: "tHKcly4mUCWEin/7PMDfGIwZsGwTwOAB+y1Z2uYU8OLrf3LuDbI9DKAz/dGAz5iP"

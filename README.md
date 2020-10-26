@@ -1,35 +1,79 @@
 # Heimdallr (Your best Sigle Sign On with Elixir and JWT)
 
-### Powered By:
+## Run app
 
-- Elixir (Language)
-- Pheonix (Framework)
-- Absynt (GraphQL)
-- Ecto (ORM)
-- Mix (Package Manager)
-- PostgreSQL (SGBD)
-- JWT / SSO
-- Socket.IO (Assync)
+### On local development
 
-### Run app
+> Observation! <br />
+> If are using VSCode and extension ElixirLS: Elixir support and debugger.
+> Make sure to disable this configuration. This get deps of your OS and replace of docker container, causing error of system.
 
 ```
-docker-compose up
+Elixir LS: Fetch Deps
+- [ ] Automatically fetch project dependencies when compiling
 ```
+
+<!-- ### One command for run
+
+```sh
+  docker-compose up --build
+```
+
+> Open browser on: <localhost:4000>
 
 ### Enter to container
 
 ```
 docker exec -it heimdallr-api /bin/sh
+``` -->
+
+### Run just DB
+
+```sh
+docker-compose -f db.yml up --build
 ```
 
-### Run migrate
+### Install dependencies
 
+```sh
+mix deps.get && cd assets && npm install && node node_modules/webpack/bin/webpack.js --mode development && cd ../
 ```
+
+### Run locally without Docker
+
+```sh
+mix start
+```
+
+> Need a Database <br />
+> Open browser on: <localhost:4000>
+
+### Run any command on container docker
+
+Like ecto.migrate, to migrate database structure
+
+```sh
 docker exec -it heimdallr-api mix ecto.migrate
 ```
 
+### Run just a container without docker-compose, just a single container
+
+```powershell
 docker run -it --rm --name elixir -p 4000:4000 -v "\$PWD":"/var/www" -w "/var/www" elixir:slim /bin/bash
+```
+
+To enter on this container
+
+```powershell
+docker attach elixir
+```
+
+## Another commands
+
+```sh
+MIX_ENV=dev mix phx.server # Run app with configuration for env.
+
+iex -S mix phx.server #Run a IEX - CLI command of Elixir
 
 mix phx.gen.context UserManager User users username:string password:string
 
@@ -39,11 +83,33 @@ mix archive.install hex phx --force
 
 mix archive.install hex phx_new --force
 
-mix phx.new heimdallr --no-html --no-webpack
 
-cd heimdallr
+mix phx.gen.schema User users name:string email:string \
+bio:string number_of_pets:integer
+```
 
-mix phx.server
+### DB Commands
+
+```sh
+mix ecto.create #create database, run it on beginning of project.
+
+mix ecto.gen.migration create_people # Generate a migrate for table
+
+mix ecto.migrate # Migrate to DB existing migrate on project
+
+```
+
+### Comands to create this project
+
+```sh
+
+mix phx.new heimdallr --no-html --no-webpack # with html and webpack
+
+mix phx.new heimdallr --no-html --no-webpack # not have html and webpack
+
+cd heimdallr # Enter on project path
+
+mix phx.server # Run phoenix framework server
 
 mix archive.install hex absinthe
 
@@ -54,24 +120,19 @@ mix archive.install hex comeonin
 mix ecto.create
 
 mix deps.get
-
-mix phx.gen.schema User users name:string email:string \
-bio:string number_of_pets:integer
-
-Create DB
-mix ecto.create
-
-mix ecto.gen.migration create_people
-
-mix ecto.migrate
-
-MIX_ENV=dev mix phx.server
-
-## Run with docker
-
 ```
-  docker-compose up
-```
+
+### Powered By:
+
+- Elixir (Language)
+- Pheonix (Framework)
+- Guardian (Auth)
+- Absynt (GraphQL)
+- Ecto (ORM)
+- Mix (Package Manager)
+- PostgreSQL (SGBD)
+- JWT / SSO
+- Socket.IO (Assync)
 
 To start your Phoenix server:
 
